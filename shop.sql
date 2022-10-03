@@ -158,7 +158,8 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_purchases`(customer_id_input int unsigned)
 BEGIN
 	SELECT COUNT(p.id), c.username 
-	FROM customer c INNER JOIN purchase p WHERE c.id = customer_id_input;
+	FROM customer c INNER JOIN purchase p ON p.customer_id = customer_id_input
+	WHERE p.customer_id = c.id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -197,4 +198,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-02 19:47:20
+-- Dump completed on 2022-10-03  8:33:30
